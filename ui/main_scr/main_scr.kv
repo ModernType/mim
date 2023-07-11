@@ -1,0 +1,193 @@
+#: import res_path path_n_data.res_path
+#: import SettingsScreen ui.setts_scr.SettingsScreen
+#: import NoTransition kivy.uix.screenmanager.WipeTransition
+#: import MyTransition ui.common.MyTransition
+#: import ScrollEffect kivy.effects.scroll.ScrollEffect
+#: import EditInstall ui.edit_inst.EditInstall
+#: import Config path_n_data.Config
+
+<MainMenu>:
+    name: 'main_menu'
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        id: container
+        orientation: "vertical"
+        spacing: dp(14)
+        BoxLayout:
+            padding: dp(15), dp(22), dp(15), 0
+            size_hint_y: None
+            height: searcher.height + dp(22)
+            TranTextField:
+                id: searcher
+                icon_left: "magnify"
+                icon_left_color_normal: app.theme_cls.primary_light
+                mode: "round"
+                hint_text: "Search"
+                on_text: root.search(self.text)
+            TooltipMDIconButton:
+                icon: 'key-variant'
+                theme_icon_color: "Custom"
+                pos_hint: {"center_y": .5}
+                icon_color: app.theme_cls.primary_color
+                on_release: root.activate()
+                tooltip_text: "Activate Windows"
+        MDScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            effect_cls: ScrollEffect
+            MDGridLayout:
+                padding: dp(15), dp(7), dp(15), dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+                id: scroll
+                cols: 1
+                spacing: dp(4)
+        
+
+<NavigationButton>:
+    size_hint_y: None
+    height: 70
+    padding: self.height / 4, 0
+    spacing: dp(10)
+
+    canvas:
+        Color:
+            rgba: self._select_color
+        
+        RoundedRectangle:
+            pos: root.pos
+            size: root.size
+            radius: self.height / 2, 0, 0, self.height / 2
+
+    MDIcon:
+        id: ico
+        icon: root.icon
+        theme_text_color: "Primary"
+        text_color: root.icon_color
+        pos_hint: {'center_y': .5}
+    MDLabel:
+        id: lbl
+        text: root.text
+        theme_text_color: "Primary"
+        text_color: root.text_color
+        valign: "center"
+
+
+<NavigationBar>:
+    orientation: 'vertical'
+    size_hint_x: None
+    width: 195
+    padding: dp(10), dp(20), 0, dp(20)
+    spacing: dp(15)
+
+    canvas:
+        Color:
+            rgba: app.theme_cls.bg_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: 0, 20, 20, 0
+
+
+    Image:
+        size_hint: None, None
+        size: 100, 100
+        pos_hint: {"center_x": .45}
+        source: str(res_path / "mim_logo.png")
+    
+    MDScrollView:
+        do_scroll_y: True
+        effect_cls: ScrollEffect
+        bar_inactive_color: app.theme_cls.divider_color[0], app.theme_cls.divider_color[1], app.theme_cls.divider_color[2], 0
+        MDGridLayout:
+            id: scroll
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            # row_force_default: True
+            # row_default_height: 70
+        
+    NavigationButton:
+        icon: "cog"
+        text: "Settings"
+
+
+
+<MainScreen>:
+    name: "main"
+
+    MDBoxLayout:
+        
+        NavigationBar:
+            id: rail
+
+
+        ScreenManager:
+            id: sm
+            transition: MyTransition()
+
+            StartScreen
+            SettingsScreen:
+                id: setts
+            
+            EditInstall:
+                id: edit
+            
+    
+
+<InstallItem>:
+    # spacing: dp(4)
+    padding: dp(16), 0, 0, 0
+    size_hint_y: None
+    height: dp(55)
+
+    canvas:
+        Color:
+            rgba: app.theme_cls.bg_light
+        
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25]
+
+    Image:
+        id: ico
+        source: root.icon
+        size_hint_x: None
+        width: 32
+    MDLabel:
+        id: alias
+        text: "  " + root.alias
+    
+<IconTextItem>
+    # text: root.text
+
+    IconLeftWidget:
+        icon: root.icon
+        on_release: root.on_release()
+
+
+<StartScreen>
+    md_bg_color: app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        id: lbl
+        size_hint_y: None
+        height: icon.height
+        spacing: dp(30)
+        padding: dp(30), 0
+        pos: 0, 600 - 220
+
+        MDIcon:
+            id: icon
+            font_size: sp(40)
+            theme_text_color: "Custom"
+            text_color: app.theme_cls.primary_color
+            icon: 'arrow-left-bold'
+            pos_hint: {'center_y': 0.5}
+        
+        MDLabel:
+            text: translate("Choose already existing folder or create new") if Config().edit_mode else translate("Choose instalation`s folder")
+            font_size: dp(18)
+            pos_hint: {'center_y': 0.5}

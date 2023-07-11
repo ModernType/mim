@@ -1,0 +1,47 @@
+Search::Пошук
+Settings::Налаштування
+Add Folder::Додати папку
+Add installer using download link::Додати інсталятор використовуючи посилання
+Install app::Встановити
+Edit appearance::Редактувати вигляд
+Update::Оновити
+Name of installer::Ім'я інсталятора
+Link for updates download::Посилання для завантаження оновлення
+Choose icon::Вибрати іконку
+Save::Зберегти
+You must type a name!::Ви повинні ввести ім'я!
+Searching icons...::Шукаємо іконки...
+You must choose an icon::Ви повинні вибрати іконку
+Intallation's order::Порядок встановлення
+Type installator's names each in new line or commands::Введіть в кожному рядку назви інсталяторів по порядку або команди
+Change order::Змінити порядок
+Choose Icon::Вибреріть іконку
+Edit Order::Редагувати порядок
+You must type a name::Ви повинні ввести ім'я
+The link must lead directly to a file::Посилання має вести напряму до файлу
+Cancel updating::Відмінити оновлення
+Folder name::Ім'я папки
+Rename::Перейменувати
+Change icon::Змінити іконку
+New folder::Нова папка
+Delete::Видалити
+Drop your installers in folder ::Перенесіть Ваші інсталятори у папку 
+ or directly on window:: або прямо у вікно
+Choose already existing folder or create new::Оберіть вже існуючу папку або створіть нову
+Choose instalation`s folder::Оберіть папку з інсталяторами
+Wrong file type. Should be .exe, .bat, .msi file or folder::Неправильний тип файлу. Повинен бути .exe, .bat, .msi або папка
+You can drop installers only after folder is choosen::Ви можете поміщати інсталятори лише після вибору папки
+Language: ::Мова: 
+Reload app to apply changes::Перезавантажте додаток, щоб зміни спрацювали
+Edit mode::Режим редактування
+New local icon::Нова іконка з файлу
+Find new icon::Знайти нову іконку
+Back::Назад
+Cancel::Відмінити
+Connection error::Помилка підключення
+Check error.log for full info::Перевірте error.log для повної інформації
+ instalation is finished:: завершив інсталяцію
+Activate Windows::Активувати Windows
+Continue::Продовжити
+Attention!::Увага!
+Windows Defender prevents activation program to start. To continue you should to disable "Real time security" of your Windows Defender in settnigs::Захисник Windows може не дати програмі активації запуститися. Щоб продовжити вимкніть "Захист в режимі реального часу" в налаштуваннях Захисника Windows

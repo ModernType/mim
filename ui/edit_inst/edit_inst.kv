@@ -1,0 +1,154 @@
+#: import Window kivy.core.window.Window
+
+<Checker>:
+    adaptive_width: True
+
+    MDIcon:
+        id: check_icon
+        theme_text_color: "Custom"
+        font_size: sp(30)
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                
+    MDSpinner:
+        id: check_spin
+        size_hint: None, None
+        size: sp(24), sp(24)
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+<EditInstall>:
+    name: "edit"
+    md_bg_color: app.theme_cls.bg_normal
+
+    # TooltipMDIconButton:
+    #     icon: "arrow-left-bold"
+    #     tooltip_text: "Back"
+    #     y: Window.size[1] - self.height
+    #     on_release: root.back()
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(5)
+        padding: dp(20), dp(10), dp(20), dp(20)
+
+        TranTextField:
+            id: title
+            # halign: "center"
+            size_hint_x: .8
+            # pos_hint: {"center_x": .5}
+            theme_text_color: "Custom"
+            text_color_normal: app.theme_cls.primary_color
+            font_size: dp(28)
+        
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: dp(8)
+
+            Image:
+                id: icon
+                size_hint: None, None
+                size: 50, 50
+
+            MDLabel:
+                id: filename
+                valign: "center"
+        
+        MDBoxLayout:
+            id: link_box
+            adaptive_height: True
+            padding: 0, 0, 0, dp(5)
+            # size_hint_y: None
+            # height: link.height
+
+            TranTextField:
+                id: link
+                hint_text: "Link for updates download"
+                size_hint_x: 1
+                on_text: root.check_link()
+                # multiline: True
+                
+                
+        MDGridLayout:
+            spacing: dp(10)
+            # padding: dp(5), 0
+            cols: 3
+            orientation: "tb-lr"
+            adaptive_height: True
+            id: but_box
+
+            TranRoundFlatIconButton:
+                icon: 'file-image'
+                text: "New local icon"
+                size_hint: 1, 1
+                on_release: root.choose_local_icon()
+                    
+            TranRoundFlatIconButton:
+                icon: 'image-search'
+                text: "Find new icon"
+                size_hint: 1, 1
+                on_release: root.choose_web_icon()
+                    
+            TranRoundFlatIconButton:
+                icon: 'pencil'
+                text: "Rename"
+                size_hint: 1, 1
+                on_release: title.focus = True
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            spacing: dp(30)
+            padding: 0, dp(25)
+            id: update_show
+
+            MDBoxLayout:
+                MDProgressBar:
+                    id: progress
+                    size_hint_y: None
+                    height: 4
+                    pos_hint: {"center_y": .5}
+                
+                MDLabel:
+                    id: progress_num
+                    size_hint_x: None
+                    width: dp(60)
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: app.theme_cls.primary_color
+                
+            MDLabel:
+                id: info
+                halign: "center"
+
+        MDRelativeLayout:
+            size_hint: 1, 1
+
+            TranTextField:
+                id: order
+                hint_text: "Intallation's order"
+                helper_text: translate("Type installator's names each in new line or commands")
+                helper_text_mode: 'persistent'
+                multiline: True
+                mode: "rectangle"
+                on_text: root.order_edit(self.text)
+                size_hint: 0.98, 1
+
+        MDBoxLayout:
+            spacing: dp(10)
+            padding: 0, dp(10), 0, 0
+            adaptive_height: True
+            adaptive_width: True
+            pos_hint: {"center_x": .5}
+
+            TranFillRoundFlatButton:
+                text: "Save"
+                on_release: root.save()
+
+<DragTable>:
+    md_bg_color: app.theme_cls.primary_color
+
+
+<DragItem>:
+    md_bg_color: app.theme_cls.bg_light
+    size_hint_y: None
+    height: 55
+    pos: self.parent.pos
