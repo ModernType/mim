@@ -256,7 +256,7 @@ class FolderItem(NavigationButton):
             self.scr.name = self.folder.path.name
             self.text = name
 
-            self.scr.reload()
+            self.scr.update()
 
     def edit(self):
         def apply(inst, val=None):
